@@ -1,15 +1,20 @@
 import React from 'react'
-import { Nav, NavItem, NavLink } from 'reactstrap';
-import {Link} from 'react-router-dom'
+import { Nav, NavItem, NavLink,  } from 'reactstrap';
+import {Link, useParams, Route} from 'react-router-dom'
+import DashBoard from './DashBoard';
+
 const Header = () => {
+    const { id } = useParams();
+
     return (
         <div>
             <Nav tabs>
         <NavItem>
-          <Link  to='/market'>Home</Link>
+          <Link  to= '/dashboard'> DashBoard</Link>
         </NavItem>
        <NavItem>
-       <Link  to='/market/user/:id'>Dashboard</Link>
+           <div component ={DashBoard}/>
+       {/* <Route path = '/market/' component ={DashBoard} /> */}
         </NavItem>
         
       </Nav>

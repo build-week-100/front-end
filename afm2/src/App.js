@@ -7,6 +7,10 @@ import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
 import PrivateRoute from './component/PrivateRoute'
 import ItemList from './component/ItemList';
 import Home from './component/Home'
+import Header from './component/Header'
+import DashBoard from './component/DashBoard';
+import AddItem from './component/AddItem';
+
 
 
 
@@ -16,10 +20,13 @@ const App =() => {
     <Router>
     <div className="App">
      <p>something</p>
-     <Route  path="/" component={Login}></Route>
+     <Route exact path="/" component={Login}></Route>
      <Switch>
      <PrivateRoute  exact path='/protected' component={Home}/>
      {/* <PrivateRoute path ='/Home' component ={Home} /> */}
+     <PrivateRoute   path='/dashboard' component={DashBoard}/>
+     <PrivateRoute   path='/header' component={Header}/>
+     <PrivateRoute   path='/addItem' component={AddItem}/>
      
 <Register />
 </Switch>
