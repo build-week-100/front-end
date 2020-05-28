@@ -1,31 +1,27 @@
-import React from 'react';
+import React from "react";
+import "./App.css";
+import Register from "./component/Register";
+import Login from "./component/Login";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import PrivateRoute from "./component/PrivateRoute";
+import ItemList from "./component/ItemList";
+import Home from "./component/Home";
 
-import './App.css';
-import Login from './component/Login'
-import Register from './component/Register'
-import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
-import PrivateRoute from './component/PrivateRoute'
-import ItemList from './component/ItemList';
-import Home from './component/Home'
-
-
-
-
-const App =() => {
+const App = () => {
   return (
     <Router>
-    <div className="App">
-     <p>something</p>
-     <Route  path="/" component={Login}></Route>
-     <Switch>
-     <PrivateRoute  exact path='/protected' component={Home}/>
-     {/* <PrivateRoute path ='/Home' component ={Home} /> */}
-     
-<Register />
-</Switch>
-    </div>
+      <div className="App">
+        <p>African Marketplace</p>
+        <Route path="/" component={Login}></Route>
+        <Switch>
+          <PrivateRoute exact path="/protected" component={Home} />
+          {/* <PrivateRoute path ='/Home' component ={Home} /> */}
+
+          <Register />
+        </Switch>
+      </div>
     </Router>
   );
-}
+};
 
 export default App;
