@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axiosWithAuth from '../axiosWithAxios/axiosWithAxios'
+import axiosWithAuth from "../axiosWithAxios/axiosWithAxios";
+import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import "./form.css";
 
@@ -25,6 +26,7 @@ const SchemaFormL = yup.object().shape({
 });
 
 const Login = (props) => {
+  const history = useHistory();
   const [loginU, setloginU] = useState(initialFormL);
 
   const [errorsL, seterrorsL] = useState(initialWarningL);
@@ -61,12 +63,14 @@ const Login = (props) => {
         loginU
       )
       .then((res) => {
-        console.log(res.data);
-        setloginU({
-          username: "",
-          password: "",
-        });
-      });
+        localStorage.setItem("token", res.data.token);
+        history.push("/protected");
+      })
+      .catch((err) => console.log(err));
+    setloginU({
+      username: "",
+      password: "",
+    });
   };
 
   return (
