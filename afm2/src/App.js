@@ -19,8 +19,9 @@ const App =() => {
   return (
     <Router>
     <div className="App">
-     <p>something</p>
+     <p>African Marketplace</p>
      <Route exact path="/" component={Login}></Route>
+     <Route exact path="/Register" component={Register} />
      <Switch>
      <PrivateRoute  exact path='/protected' component={Home}/>
      {/* <PrivateRoute path ='/Home' component ={Home} /> */}
@@ -28,7 +29,6 @@ const App =() => {
      <PrivateRoute   path='/header' component={Header}/>
      <PrivateRoute   path='/addItem' component={AddItem}/>
      
-<Register />
 </Switch>
     </div>
     </Router>

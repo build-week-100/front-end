@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import axiosWithAuth from "../axiosWithAxios/axiosWithAxios";
+import { Link } from "react-router-dom";
 import "./form.css";
 
 const initialFormR = {
@@ -72,41 +73,41 @@ const Register = (props) => {
   };
 
   return (
-      <div className="containerbig">
-    <div className="container">
-      <h1>Register</h1>
-      <form onSubmit={onSubmit}>
-        <div className="form">
-          <label>Username:&nbsp;</label>
-          <input
-            placeholder="Write username here"
-            onChange={onChange}
-            type="text"
-            name="username"
-            value={registerU.username}
-          />
+    <div className="containerbig">
+      <div className="container">
+        <h1>Register</h1>
+        <form onSubmit={onSubmit}>
+          <div className="form">
+            <label>Username:&nbsp;</label>
+            <input
+              placeholder="Write username here"
+              onChange={onChange}
+              type="text"
+              name="username"
+              value={registerU.username}
+            />
 
-          <label>Password:&nbsp;</label>
-          <input
-            placeholder="Write password here"
-            onChange={onChange}
-            type="password"
-            name="password"
-            value={registerU.password}
-          />
+            <label>Password:&nbsp;</label>
+            <input
+              placeholder="Write password here"
+              onChange={onChange}
+              type="password"
+              name="password"
+              value={registerU.password}
+            />
 
-          <button className="Button" disabled={!buttonE} type="submit">
-            {" "}
-            Register
-          </button>
-          <div> {ErrorsR.username} </div>
-          <div> {ErrorsR.password} </div>
-        </div>
-      </form>
+            <button className="Button" disabled={!buttonE} type="submit">
+              {" "}
+              Register
+            </button>
+            <div> {ErrorsR.username} </div>
+            <div> {ErrorsR.password} </div>
+          </div>
+        </form>
+        <p> Already have an account? <Link to="/">Log in</Link>{" "}
+        </p>
+      </div>
     </div>
-    
-    </div>
-    
   );
 };
 
