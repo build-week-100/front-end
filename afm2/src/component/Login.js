@@ -80,7 +80,7 @@ const Login = (props) => {
         <h1>Log in</h1>
         <form onSubmit={onSubmit}>
           <div className="form">
-            <label>Username:&nbsp;</label>
+            <label className="label1">Username:&nbsp;</label>
             <input
               placeholder="Write username here"
               onChange={onChange}
@@ -89,7 +89,7 @@ const Login = (props) => {
               value={loginU.username}
             />
 
-            <label>Password:&nbsp;</label>
+            <label className="label1">Password:&nbsp;</label>
             <input
               placeholder="Write password here"
               onChange={onChange}

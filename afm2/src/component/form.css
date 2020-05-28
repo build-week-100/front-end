@@ -19,7 +19,7 @@ form {
   
 }
 
-label {
+.label1 {
   color: crimson;
   font-weight: bolder;
   display: flex;
@@ -42,7 +42,7 @@ input {
   background-color: white;
 }
 
-button {
+.Button {
   width: 150px;
   display: inline-block;
   padding: 8px 11px;
