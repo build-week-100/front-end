@@ -1,67 +1,109 @@
-import React, {useState} from 'react'
-import {InputGroup, InputGroupAddon, Input, Button} from 'reactstrap';
+import React, { useState, useEffect } from "react";
+import * as yup from "yup";
+import axiosWithAuth from "../axiosWithAxios/axiosWithAxios";
+import "./form.css";
 
+const initialFormR = {
+  username: "",
+  password: "",
+};
 
+const initialWarningE = {
+  username: "Username is a required field",
+  password: "Password is a required field",
+};
 
+const schemaFormR = yup.object().shape({
+  username: yup
+    .string()
+    .trim()
+    .min(3, "Username must be at least 3 characters")
+    .required("Username is a required field"),
+  password: yup
+    .string()
+    .trim()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is a required field"),
+});
 
+const Register = (props) => {
+  const [registerU, setregisterU] = useState(initialFormR);
 
-const Register = () => {
-    const [signUp, setSignUp] = useState({
-     username: "", 
-     password: "" 
+  const [ErrorsR, setErrorsR] = useState(initialWarningE);
+
+  const [buttonE, setbuttonE] = useState(false);
+
+  useEffect(() => {
+    schemaFormR.isValid(registerU).then((valid) => {
+      setbuttonE(valid);
     });
+  }, [registerU]);
 
-    
+  const onChange = (e) => {
+    e.persist();
 
-    //   const postRegister = (log) =>{
-    //       axiosWithAuth()
-    //       .post('/auth/register', log)
-    //       .then(success => {
-    //           // setRegister([...register, success.data]) 
-    //         // debugger
-    //         console.log(success, 'are we getting data?????????')
-    //       })
-    //       .catch(error => {
-           
-    //         // console.log(error, 'Is it Error??????')
-    //       })
-    //   }
+    setregisterU({ ...registerU, [e.target.name]: e.target.value });
 
-    //   const onSubmit = (evt) => {
-    //     evt.preventDefault()
-    
-    //     const newRegister = {
-    //       username: signUp.username,
-    //       password: signUp.password,
-          
-         
-    //     }
-    //       //this post new user to API
-    //     //  setUsers([...users, newRegister]) 
-    //     postRegister(newRegister)
-    //     setSignUp()
-        
-    //   }
+    yup
+      .reach(schemaFormR, e.target.name)
+      .validate(e.target.value)
+      .then((valid) => {
+        setErrorsR({ ...ErrorsR, [e.target.name]: "" });
+      })
+      .catch((err) => {
+        setErrorsR({ ...ErrorsR, [e.target.name]: err.errors[0] });
+      });
+  };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    axiosWithAuth()
+      .post(
+        "https://african-marketplace-rd.herokuapp.com/api/auth/register",
+        registerU
+      )
+      .then((res) => {
+        console.log(res.data);
+        setregisterU({
+          username: "",
+          password: "",
+        });
+      });
+  };
 
+  return (
+    <div className="container">
+      <h1>Register</h1>
+      <form onSubmit={onSubmit}>
+        <div className="form">
+          <label>Username:&nbsp;</label>
+          <input
+            placeholder="Write username here"
+            onChange={onChange}
+            type="text"
+            name="username"
+            value={registerU.username}
+          />
 
-    return (
-        <div>
-        {/* <form>
-            <InputGroup>
-        
-                <Input />
-             </InputGroup>
-      <InputGroup>
-        
-                <Input />
-            </InputGroup>
-        </form> */}
+          <label>Password:&nbsp;</label>
+          <input
+            placeholder="Write password here"
+            onChange={onChange}
+            type="password"
+            name="password"
+            value={registerU.password}
+          />
 
+          <button className="Button" disabled={!buttonE} type="submit">
+            {" "}
+            Register
+          </button>
+          <div> {ErrorsR.username} </div>
+          <div> {ErrorsR.password} </div>
         </div>
+      </form>
+    </div>
+  );
+};
 
-
-    )
-}
-
-export default Register
+export default Register;
