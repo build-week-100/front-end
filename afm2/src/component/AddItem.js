@@ -24,7 +24,7 @@ const handleChange = e =>{
 const handleSubmit = e => {
     e.preventDefault()
     axiosWithAuth()
-    .post('/market/user/:id', addItem)
+    .post('/market/user/1', addItem)
     .then(res =>{
         setAddItem({
             country: '',
@@ -42,10 +42,10 @@ const handleSubmit = e => {
     return (
         <div >
             <form onSubmit={handleSubmit}>
-                <div >Add A Friend</div>
+                <div >Add An Item</div>
                 <div >
                   <div >
-                    <label htmlFor='AddName'>Friend Name</label>
+                    <label htmlFor='AddItem'>Item</label>
                       <input 
                       type="text"
                        name="country" 
@@ -54,58 +54,58 @@ const handleSubmit = e => {
                        placeholder='Country'/>
                   </div>
                   <div >
-                    <label htmlFor='AddAge'></label>
+                    <label htmlFor='AddMarket'>Add Market</label>
                       <input 
-                       type="number"
-                       name="age"
+                       type="text"
+                       name="market_name"
                        value={addItem.market_name}
                        onChange={handleChange}
-                       placeholder='age'/>
+                       placeholder='Market Name'/>
                   </div>
                   <div >
-                    <label htmlFor='AddEmail'>Email</label>
+                    <label htmlFor='ProductCategory'>Product Category</label>
                       <input 
                        type="text"
-                       name="age"
+                       name="product_category"
                        value={addItem.product_category}
                        onChange={handleChange}
-                       placeholder='email'/>
+                       placeholder='Product Category'/>
                   </div>
                   <div >
-                    <label htmlFor='AddEmail'>Email</label>
+                    <label htmlFor='ProductDescription<'>Product Description</label>
                       <input 
                        type="text"
-                       name="age"
-                       value={addItem. product_description}
+                       name="product_description"
+                       value={addItem.product_description}
                        onChange={handleChange}
-                       placeholder='email'/>
+                       placeholder='Product Description'/>
                   </div>
                   <div >
-                    <label htmlFor='AddEmail'>Email</label>
+                    <label htmlFor='ProductName'>Product Name</label>
                       <input 
                        type="text"
-                       name="age"
+                       name="product_name"
                        value={addItem.product_name}
                        onChange={handleChange}
-                       placeholder='email'/>
+                       placeholder='Product Name'/>
                   </div>
                   <div >
-                    <label htmlFor='AddEmail'>Email</label>
+                    <label htmlFor='productprice'>Product Price</label>
                       <input 
                        type="text"
-                       name="age"
+                       name="product_price"
                        value={addItem.product_price}
                        onChange={handleChange}
-                       placeholder='email'/>
+                       placeholder='Product Price'/>
                   </div>
                   <div >
-                    <label htmlFor='AddEmail'>Email</label>
+                    <label htmlFor='productquantity'>Product Quantity</label>
                       <input 
                        type="text"
-                       name="age"
+                       name="product_quantity"
                        value={addItem.product_quantity}
                        onChange={handleChange}
-                       placeholder='email'/>
+                       placeholder='Product Quantity'/>
                   </div>
                   <div>
                     <button type='submit'  >submit</button>

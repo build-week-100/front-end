@@ -4,18 +4,20 @@ import axiosWithAuth from '../axiosWithAxios/axiosWithAxios'
 import Header from './Header'
 
 import AddItem from './AddItem'
-import {Link, useParams, Route} from 'react-router-dom'
+import {Link, useParams, Route, useHistory} from 'react-router-dom'
 
-// const {id} =useParams() 
-const DashBoard = () => {
-  
-   
+
+const DashBoard = (props) => {
+    const {id}= useParams()
+    const {push}= useHistory()
    const [dashItems, setdashItems] = useState([])
 
 
     useEffect(()=>{
+
+        const getItemsId = () =>{
         axiosWithAuth()
-        .get(`/market`)
+        .get(`/market/user/${id}`)
         .then(res =>{
             console.log('dashres', res)
            setdashItems(res.data.data)
@@ -23,8 +25,18 @@ const DashBoard = () => {
         .catch(err =>{
             console.log('err',err)
         })
+       } 
     },[]
     )
+
+
+    const deleteItem = ditem =>{
+axiosWithAuth()
+        .delete(`/market/user/${1}`)
+        .then(res => dashItems (ditem.filter(ditem.id !== res.data.data)))
+        .catch(err=> console.log('did not remove',err))
+
+    }
 
 
     return (
@@ -48,7 +60,8 @@ const DashBoard = () => {
                        <h3>{item.market_name} </h3>
                        <h3>{item.product_price} </h3>
                        <h3> {item.product_quantity}</h3>
-                       
+                       <button
+                       onClick={()=> deleteItem(item.id)}>Delete</button>
                     </div>
                     </div>
                 )
