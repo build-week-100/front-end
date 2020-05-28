@@ -7,7 +7,7 @@ import Header from './Header'
 const Home = (props) => {
     const [items, setItems] = useState([])
     const[search, setSearch]= useState('')
-    // const [filteredName, setFilteredName] =useState([])
+    const [filteredName, setFilteredName] =useState([])
 
     useEffect(()=>{
         axiosWithAuth()
@@ -21,17 +21,19 @@ const Home = (props) => {
         })
     },[]
     )
-//     useEffect(()=>{
-// setFilteredName(
-//     items.filter(item=>{
-//         return item.product_name.toLowerCase().includes(search.toLowerCase())
-//     })
-// )
-//     },[])
-
-    const filteredName = items.filter( item =>{
-       return item.product_name.toLowerCase().includes( search.toLowerCase())
+    useEffect(()=>{
+    setFilteredName(
+    items.filter(item=>{
+        return item.product_name.toLowerCase().includes(search.toLowerCase()),
+        item.country.toLowerCase().includes(search.toLowerCase()),
+        item.market_name.toLowerCase().includes(search.toLowerCase())
     })
+)
+    },[search,items])
+
+    // const filteredName = items.filter( item =>{
+    //    return item.product_name.toLowerCase().includes( search.toLowerCase())
+    // })
 
     return (
         <div>

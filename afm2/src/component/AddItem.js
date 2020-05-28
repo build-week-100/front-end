@@ -1,8 +1,11 @@
 import React, {useState} from 'react'
 import axiosWithAuth from '../axiosWithAxios/axiosWithAxios'
+import {useHistory} from 'react-router-dom'
+
 
 
 const AddItem = () => {
+    const {push}= useHistory()
     const [addItem, setAddItem] = useState({
         country: '',
         market_name: '',
@@ -37,6 +40,7 @@ const handleSubmit = e => {
             
         })
     })
+    push('/dashboard')
 }
 
     return (

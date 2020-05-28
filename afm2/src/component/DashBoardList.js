@@ -3,10 +3,12 @@ import Header from './Header'
 import AddItem from './AddItem'
 import DashBoard from './DashBoard'
 import axiosWithAuth from '../axiosWithAxios/axiosWithAxios'
+import {useHistory} from 'react-router-dom'
 
 const DashBoardList = (props) => {
    
 console.log('dashboardlist', props)
+const {push}= useHistory()
 
 // const deleteItem = (ditem) =>{
 //     axiosWithAuth()
@@ -32,7 +34,8 @@ console.log('dashboardlist', props)
                       onClick={() => {
                         axiosWithAuth()
                         .delete(`/market/${props.item.id}`)
-                    }}>Delete</button> 
+                        push('/protected')
+                    }   }>Delete</button> 
                     </div>
                     </div>
                 )
