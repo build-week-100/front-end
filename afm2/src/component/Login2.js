@@ -1,57 +1,57 @@
 import React, { useState, useEffect } from "react";
-import * as yup from "yup";
 import axiosWithAuth from "../axiosWithAxios/axiosWithAxios";
+import { useHistory } from "react-router-dom";
+import * as yup from "yup";
 import "./form.css";
 
-const initialFormR = {
+const initialFormL = {
   username: "",
   password: "",
 };
 
-const initialWarningE = {
-  username: "Username is a required field",
-  password: "Password is a required field",
+const initialWarningL = {
+  username: "A username is required",
+  password: "A password is required",
 };
 
-const schemaFormR = yup.object().shape({
+const SchemaFormL = yup.object().shape({
   username: yup
     .string()
-    .trim()
     .min(3, "Username must be at least 3 characters")
     .required("Username is a required field"),
   password: yup
     .string()
-    .trim()
     .min(6, "Password must be at least 6 characters")
     .required("Password is a required field"),
 });
 
-const Register = (props) => {
-  const [registerU, setregisterU] = useState(initialFormR);
+const Login = (props) => {
+  const history = useHistory();
+  const [loginU, setloginU] = useState(initialFormL);
 
-  const [ErrorsR, setErrorsR] = useState(initialWarningE);
+  const [errorsL, seterrorsL] = useState(initialWarningL);
 
   const [buttonE, setbuttonE] = useState(false);
 
   useEffect(() => {
-    schemaFormR.isValid(registerU).then((valid) => {
+    SchemaFormL.isValid(loginU).then((valid) => {
       setbuttonE(valid);
     });
-  }, [registerU]);
+  }, [loginU]);
 
   const onChange = (e) => {
     e.persist();
 
-    setregisterU({ ...registerU, [e.target.name]: e.target.value });
+    setloginU({ ...loginU, [e.target.name]: e.target.value });
 
     yup
-      .reach(schemaFormR, e.target.name)
+      .reach(SchemaFormL, e.target.name)
       .validate(e.target.value)
       .then((valid) => {
-        setErrorsR({ ...ErrorsR, [e.target.name]: "" });
+        seterrorsL({ ...errorsL, [e.target.name]: "" });
       })
       .catch((err) => {
-        setErrorsR({ ...ErrorsR, [e.target.name]: err.errors[0] });
+        seterrorsL({ ...errorsL, [e.target.name]: err.errors[0] });
       });
   };
 
@@ -59,21 +59,23 @@ const Register = (props) => {
     e.preventDefault();
     axiosWithAuth()
       .post(
-        "https://african-marketplace-rd.herokuapp.com/api/auth/register",
-        registerU
+        "https://african-marketplace-rd.herokuapp.com/api/auth/login",
+        loginU
       )
       .then((res) => {
-        console.log(res.data);
-        setregisterU({
-          username: "",
-          password: "",
-        });
-      });
+        localStorage.setItem("token", res.data.token);
+        history.push("/protected");
+      })
+      .catch((err) => console.log(err));
+    setloginU({
+      username: "",
+      password: "",
+    });
   };
 
   return (
     <div className="container">
-      <h1>Register</h1>
+      <h1>Login</h1>
       <form onSubmit={onSubmit}>
         <div className="form">
           <label>Username:&nbsp;</label>
@@ -82,7 +84,7 @@ const Register = (props) => {
             onChange={onChange}
             type="text"
             name="username"
-            value={registerU.username}
+            value={loginU.username}
           />
 
           <label>Password:&nbsp;</label>
@@ -91,19 +93,19 @@ const Register = (props) => {
             onChange={onChange}
             type="password"
             name="password"
-            value={registerU.password}
+            value={loginU.password}
           />
 
           <button className="Button" disabled={!buttonE} type="submit">
             {" "}
-            Register
+            Login
           </button>
-          <div> {ErrorsR.username} </div>
-          <div> {ErrorsR.password} </div>
+          <div> {errorsL.username} </div>
+          <div> {errorsL.password} </div>
         </div>
       </form>
     </div>
   );
 };
 
-export default Register;
+export default Login;

@@ -19,7 +19,7 @@ const App =() => {
   return (
     <Router>
     <div className="App">
-     <p>something</p>
+     
      <Route exact path="/" component={Login}></Route>
      <Switch>
      <PrivateRoute  exact path='/protected' component={Home}/>

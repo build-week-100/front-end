@@ -1,35 +1,34 @@
 import React from 'react'
+import { Card, Button, CardTitle, CardText, Container, Row, Col } from 'reactstrap';
 
 const ItemList = (props) => {
-    
+    const {item} = props
 
 console.log('what props', props)
-    return (
-        <div className='WhatsThis'>
-            {/* <p>{props.items}</p> */}
-            {props.items.map(item =>{
-
-                return(
-                    <div className='whatsthis2'>
-                    <div className='FriendsCardContainer'>
-                <h2>{item.product_name}</h2>
-                        <h3>{item.product_category}</h3>
-                       <h3> { item.product_description}</h3>
-                       <div>                </div> 
-                       <h3> {item.country}</h3>
-                       <h3>{item.market_name} </h3>
-                       <h3>{item.product_price} </h3>
-                       <h3> {item.product_quantity}</h3>
-                       
-                    </div>
-                    </div>
+    return(
+        <Container>
+             <div className='whatsthis2'>
+                    <Col  className='ItemCard2'>
+                     <Row >   
+                    <Card className='ItemCard' body inverse color="warning">
+                    <CardTitle>{item.product_name}</CardTitle>
+                    <CardText>{item.product_category}</CardText>
+                    <CardText>{ item.product_description}</CardText>
+                    <CardText>{item.country}</CardText>
+                    <CardText>{item.market_name}</CardText>
+                    <CardText>{item.product_price}</CardText>
+                    <CardText>{item.product_quantity}</CardText>
+                     </Card>
+                     </Row>
+                </Col>
+            </div>
+        </Container>
                 )
-            })}
+           
 
 
             
-        </div>
-    )
+     
 }
 
 export default ItemList

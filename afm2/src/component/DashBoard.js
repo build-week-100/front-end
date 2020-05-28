@@ -5,6 +5,7 @@ import Header from './Header'
 
 import AddItem from './AddItem'
 import {Link, useParams, Route, useHistory} from 'react-router-dom'
+import DashBoardList from './DashBoardList'
 
 
 const DashBoard = (props) => {
@@ -15,60 +16,31 @@ const DashBoard = (props) => {
 
     useEffect(()=>{
 
-        const getItemsId = () =>{
+        
         axiosWithAuth()
-        .get(`/market/user/${id}`)
+        .get(`/market/user/${1}`)
         .then(res =>{
-            console.log('dashres', res)
+            console.log('dashres', res.data.data)
            setdashItems(res.data.data)
         })
         .catch(err =>{
             console.log('err',err)
         })
-       } 
+        
     },[]
     )
 
 
-    const deleteItem = ditem =>{
-axiosWithAuth()
-        .delete(`/market/user/${1}`)
-        .then(res => dashItems (ditem.filter(ditem.id !== res.data.data)))
-        .catch(err=> console.log('did not remove',err))
 
-    }
 
 
     return (
-        <div className='WhatsThis'>
-
+        <div>
+            <Header />
             <Link to ='/addItem'>AddItem</Link>
-<div component ={Header}/>
-            <p>dashboard</p>
-            
-            <div component={AddItem}/>
-            {dashItems.map(item =>{
-
-                return(
-                    <div className='whatsthis2'>
-                    <div className='FriendsCardContainer'>
-                <h2>{item.product_name}</h2>
-                        <h3>{item.product_category}</h3>
-                       <h3> { item.product_description}</h3>
-                       <div>                </div> 
-                       <h3> {item.country}</h3>
-                       <h3>{item.market_name} </h3>
-                       <h3>{item.product_price} </h3>
-                       <h3> {item.product_quantity}</h3>
-                       <button
-                       onClick={()=> deleteItem(item.id)}>Delete</button>
-                    </div>
-                    </div>
-                )
-            })}
-
-
-            
+            {dashItems.map(item =>(
+                <DashBoardList key ={item.id} item={item}/>
+            ))}
         </div>
     )
 }
