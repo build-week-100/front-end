@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../axiosWithAxios/axiosWithAxios";
 import { useHistory } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import * as yup from "yup";
 import "./form.css";
 
@@ -76,7 +77,7 @@ const Login = (props) => {
   return (
     <div className="containerbig">
     <div className="container">
-      <h1>Login</h1>
+      <h1>Log in</h1>
       <form onSubmit={onSubmit}>
         <div className="form">
           <label>Username:&nbsp;</label>
@@ -105,8 +106,11 @@ const Login = (props) => {
           <div> {errorsL.password} </div>
         </div>
       </form>
+      <p>Don't have an account? <Link to='/Register'>Register</Link> </p>
     </div>
+    
     </div>
+    
   );
 };
 
