@@ -1,64 +1,50 @@
+
+
 .container {
-    color:crimson;
-    background-color: yellow;
+  color: crimson;
+  background-color: yellow;
   text-align: center;
-  max-width: 600px;
   display: flex;
   flex-direction: column;
-  justify-self:  center;
-}
-
-html {
-	font-size: 62.5%;
-}
-h1,
-h2,
-h3{font-size: 3rem;
-
+  justify-self: center;
 }
 
 form {
-	padding-top: 5x;
-	display: flex;
-	flex-direction: column;
-	width: 90%;
-	max-width: 300px;
-	margin: 0 auto;
+  padding-top: 5x;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 300px;
+  margin: 0 auto;
+  
 }
 
 label {
-	color: crimson;
-	font-weight: bolder;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	font-size: 1.4rem;
+  color: crimson;
+  font-weight: bolder;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 1.4rem;
 }
 
-input,
-select,
-textarea {
-	color: forestgreen;
-	width: 100%;
-	display: block;
-	width: 100%;
-	padding: 10px;
-	font-size: 1.4rem;
-	letter-spacing: 0.5px;
-	background-color: white;
-}
-select {
-	height: 40px;
-	width: 325px;
+input {
+  color: forestgreen;
+  width: 100%;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+  background-color: white;
 }
 
 button {
-	width: 150px;
-	display: inline-block;
-	padding: 8px 11px;
-	font-size: 1.2rem;
-	letter-spacing: 2px;
-  background-color:green;
+  width: 150px;
+  display: inline-block;
+  padding: 8px 11px;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  background-color: green;
   color: white;
-
 }

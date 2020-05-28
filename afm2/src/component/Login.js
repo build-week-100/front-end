@@ -10,8 +10,8 @@ const initialFormL = {
 };
 
 const initialWarningL = {
-  username: "A username is required",
-  password: "A password is required",
+  username: "Username is a required field",
+  password: "Password is a required field",
 };
 
 const SchemaFormL = yup.object().shape({
@@ -74,6 +74,7 @@ const Login = (props) => {
   };
 
   return (
+    <div className="containerbig">
     <div className="container">
       <h1>Login</h1>
       <form onSubmit={onSubmit}>
@@ -104,6 +105,7 @@ const Login = (props) => {
           <div> {errorsL.password} </div>
         </div>
       </form>
+    </div>
     </div>
   );
 };

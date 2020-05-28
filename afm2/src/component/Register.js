@@ -72,6 +72,7 @@ const Register = (props) => {
   };
 
   return (
+      <div className="containerbig">
     <div className="container">
       <h1>Register</h1>
       <form onSubmit={onSubmit}>
@@ -102,6 +103,7 @@ const Register = (props) => {
           <div> {ErrorsR.password} </div>
         </div>
       </form>
+    </div>
     </div>
   );
 };
