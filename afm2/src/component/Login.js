@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../axiosWithAxios/axiosWithAxios";
 import { useHistory } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import * as yup from "yup";
 import "./form.css";
 
@@ -76,41 +76,41 @@ const Login = (props) => {
 
   return (
     <div className="containerbig">
-    <div className="container">
-      <h1>Log in</h1>
-      <form onSubmit={onSubmit}>
-        <div className="form">
-          <label>Username:&nbsp;</label>
-          <input
-            placeholder="Write username here"
-            onChange={onChange}
-            type="text"
-            name="username"
-            value={loginU.username}
-          />
+      <div className="container">
+        <h1>Log in</h1>
+        <form onSubmit={onSubmit}>
+          <div className="form">
+            <label>Username:&nbsp;</label>
+            <input
+              placeholder="Write username here"
+              onChange={onChange}
+              type="text"
+              name="username"
+              value={loginU.username}
+            />
 
-          <label>Password:&nbsp;</label>
-          <input
-            placeholder="Write password here"
-            onChange={onChange}
-            type="password"
-            name="password"
-            value={loginU.password}
-          />
+            <label>Password:&nbsp;</label>
+            <input
+              placeholder="Write password here"
+              onChange={onChange}
+              type="password"
+              name="password"
+              value={loginU.password}
+            />
 
-          <button className="Button" disabled={!buttonE} type="submit">
-            {" "}
-            Login
-          </button>
-          <div> {errorsL.username} </div>
-          <div> {errorsL.password} </div>
-        </div>
-      </form>
-      <p>Don't have an account? <Link to='/Register'>Register</Link> </p>
+            <button className="Button" disabled={!buttonE} type="submit">
+              {" "}
+              Log in
+            </button>
+            <div> {errorsL.username} </div>
+            <div> {errorsL.password} </div>
+          </div>
+        </form>
+        <p>
+          Don't have an account? <Link to="/Register">Register</Link>{" "}
+        </p>
+      </div>
     </div>
-    
-    </div>
-    
   );
 };
 
