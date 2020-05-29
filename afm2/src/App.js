@@ -10,6 +10,9 @@ import Home from './component/Home'
 import Header from './component/Header'
 import DashBoard from './component/DashBoard';
 import AddItem from './component/AddItem';
+import EditItems from './component/EditItems';
+import ItemPage from './component/ItemPage';
+
 
 
 
@@ -28,6 +31,8 @@ const App =() => {
      <PrivateRoute   path='/dashboard' component={DashBoard}/>
      <PrivateRoute   path='/header' component={Header}/>
      <PrivateRoute   path='/addItem' component={AddItem}/>
+     <PrivateRoute   path='/editItem' component={EditItems}/>
+     
      
 
 </Switch>
